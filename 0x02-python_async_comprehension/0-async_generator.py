@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
-"""
- # Async Generator Module
 
-This module provides an asynchronous generator that yields random floating-point numbers between 0 and 10.
-
-## Functionality
-
-### async_generator
-
-```python
-async def async_generator() -> Generator[float, None, None]:
-    """Loop 10 times, wait 1 sec each time"""
-"""
+'''Write a coroutine called async_generator that takes no arguments.
+'''
 
 
 import asyncio
+from random import uniform
 from typing import Generator
-import random
 
 
 async def async_generator() -> Generator[float, None, None]:
-    """Loop 10 times, wait 1 sec each time"""
+    '''an async function that returns a float number'''
     for i in range(10):
         await asyncio.sleep(1)
-        yield random.random() * 10
+        yield(uniform(0, 10))
+
+
+if __name__ == '__main__':
+    async def print_yielded_values():
+        result = []
+        async for i in async_generator():
+            result.append(i)
+        print(result)
+
+    asyncio.run(print_yielded_values())
